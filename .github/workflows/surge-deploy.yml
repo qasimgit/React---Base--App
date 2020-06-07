@@ -15,19 +15,8 @@ jobs:
       - uses: actions/setup-node@v2-beta
         with:
           node-version: 12
-      - run: npm ci
-      - run: npm test
-
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          
-          
+     
+      - name: Install Yarn
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install # will run `yarn install` command
@@ -35,7 +24,7 @@ jobs:
       - name: Build React App
         run: yarn build
       
-      - name: install Surge
+      - name: Install Surge
         run: npm install --global surge
       
       - name: Deploy to Surge
